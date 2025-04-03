@@ -16,9 +16,9 @@ public class eatcookie : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             Destroy(gameObject);
         }

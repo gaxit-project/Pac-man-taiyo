@@ -6,13 +6,11 @@ public class BotMove : MonoBehaviour
 {
     public float speed = 3f;
     private Vector2 direction = Vector2.left; // 初期の移動方向
-    private Vector2 previousDirection = Vector2.zero; // 直前の移動方向
     private Transform player;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        UpdateRotation();
     }
 
     void Update()
@@ -28,23 +26,33 @@ public class BotMove : MonoBehaviour
             if (intersection != null)
             {
                 ChooseDirection(intersection);
-                UpdateRotation();
+                AdjustSpriteDirection();
             }
         }
     }
 
     void ChooseDirection(Intersection intersection)
     {
-        Vector2 playerPos = player.position;
         Vector2 botPos = transform.position;
-
-        // 進める方向を交差点の情報から取得
         List<Vector2> possibleDirections = intersection.GetAllowedDirections();
 
-        // Uターンを防ぐ
-        possibleDirections.Remove(-previousDirection);
+        // 進行方向が許可されていない場合、進行方向を変更
+        if (!possibleDirections.Contains(direction))
+        {
+            possibleDirections.Remove(-direction); // Uターンを避ける
 
-        // プレイヤーに最も近づく方向を選択
+            if (possibleDirections.Count == 0)
+            {
+                possibleDirections.Add(-direction); // 行き止まりならUターン
+            }
+
+            direction = ChooseBestDirection(possibleDirections, botPos);
+        }
+    }
+
+    Vector2 ChooseBestDirection(List<Vector2> possibleDirections, Vector2 botPos)
+    {
+        Vector2 playerPos = player.position;
         Vector2 bestDirection = possibleDirections[0];
         float shortestDistance = Vector2.Distance(botPos + bestDirection, playerPos);
 
@@ -58,20 +66,26 @@ public class BotMove : MonoBehaviour
             }
         }
 
-        // 方向を変更
-        previousDirection = direction;
-        direction = bestDirection;
+        return bestDirection;
     }
 
-    void UpdateRotation()
+    void AdjustSpriteDirection()
     {
-        if (direction == Vector2.left)
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        else if (direction == Vector2.right)
-            transform.rotation = Quaternion.Euler(0, 0, 180);
-        else if (direction == Vector2.up)
-            transform.rotation = Quaternion.Euler(0, 0, -90);
-        else if (direction == Vector2.down)
-            transform.rotation = Quaternion.Euler(0, 0, 90);
+        if (direction == Vector2.right)
+        {
+            transform.localScale = new Vector3(-1, 1, 1); // 右向き（反転）
+        }
+        else if (direction == Vector2.left)
+        {
+            transform.localScale = new Vector3(1, 1, 1); // 左向き（通常）
+        }
     }
 }
+
+
+
+
+
+
+
+//if (other.CompareTag("RD") || other.CompareTag("LD") || other.CompareTag("RU") || other.CompareTag("LU") || other.CompareTag("RUD") || other.CompareTag("LUD") || other.CompareTag("LRU") || other.CompareTag("LRD") || other.CompareTag("Closs"))
