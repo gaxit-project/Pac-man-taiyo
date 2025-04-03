@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - LR
+  - UD
+  - RD
+  - LD
+  - RU
+  - LU
+  - RUD
+  - LUD
+  - LRU
+  - LRD
+  - Closs
   layers:
   - Default
   - TransparentFX
