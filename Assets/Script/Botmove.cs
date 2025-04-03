@@ -7,13 +7,12 @@ public class BotMove : MonoBehaviour
     public float speed = 3f;
     private Vector2 direction = Vector2.left; // 初期の移動方向
     private Vector2 previousDirection = Vector2.zero; // 直前の移動方向
-
     private Transform player;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        UpdateRotation(); // 初期の向きを設定
+        UpdateRotation();
     }
 
     void Update()
@@ -23,25 +22,24 @@ public class BotMove : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("RD")|| other.CompareTag("LD") || other.CompareTag("RU") || other.CompareTag("LU") || other.CompareTag("RUD") || other.CompareTag("LUD") || other.CompareTag("LRU") || other.CompareTag("LRD") || other.CompareTag("Closs")) // 交差点なら方向を決定
+        if (other.CompareTag("RD") || other.CompareTag("LD") || other.CompareTag("RU") || other.CompareTag("LU") || other.CompareTag("RUD") || other.CompareTag("LUD") || other.CompareTag("LRU") || other.CompareTag("LRD") || other.CompareTag("Closs"))
         {
-            ChooseDirection();
-            UpdateRotation(); // 新しい方向に回転
+            Intersection intersection = other.GetComponent<Intersection>();
+            if (intersection != null)
+            {
+                ChooseDirection(intersection);
+                UpdateRotation();
+            }
         }
     }
 
-    void ChooseDirection()
+    void ChooseDirection(Intersection intersection)
     {
         Vector2 playerPos = player.position;
         Vector2 botPos = transform.position;
 
-        // 進める方向を取得
-        List<Vector2> possibleDirections = new List<Vector2>();
-
-        if (CanMove(Vector2.up)) possibleDirections.Add(Vector2.up);
-        if (CanMove(Vector2.down)) possibleDirections.Add(Vector2.down);
-        if (CanMove(Vector2.left)) possibleDirections.Add(Vector2.left);
-        if (CanMove(Vector2.right)) possibleDirections.Add(Vector2.right);
+        // 進める方向を交差点の情報から取得
+        List<Vector2> possibleDirections = intersection.GetAllowedDirections();
 
         // Uターンを防ぐ
         possibleDirections.Remove(-previousDirection);
@@ -63,12 +61,6 @@ public class BotMove : MonoBehaviour
         // 方向を変更
         previousDirection = direction;
         direction = bestDirection;
-    }
-
-    bool CanMove(Vector2 dir)
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 1f);
-        return (hit.collider != null && (hit.collider.CompareTag("LR") || (hit.collider.CompareTag("UD")))); // "Path"タグがついた道なら進める
     }
 
     void UpdateRotation()
