@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 929f272c1aec0df4cab385b4095cc5e9
+guid: d4a99256536953140bb0ccb2a9aa4b2b
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -36,7 +36,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 32
+    spritePixelsToUnits: 16
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -98,7 +98,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638792881247522505
+  platformSettingsDirtyTick: 638792978611445783
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -122,7 +122,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Frame_0
+  - name: wallcorner_side
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -133,7 +133,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 16
-    spriteID: 2791262664972e244b771337524db242
+    spriteID: 5fb3ccea7a1612c4a842c24a897ca4b1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,36 +142,16 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Frame_1
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 28
-      width: 16
-      height: 16
-    spriteID: 61fe00cffe611fc4692a1e26a1a45881
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 28}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1003068653
-    name: yellowGD
+    guid: -1607755819
+    name: wallcorner_side
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: wallcorner_side 1
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -179,16 +159,7 @@ ScriptedImporter:
         y: 0
         width: 16
         height: 16
-      spriteId: 2791262664972e244b771337524db242
-    - name: Frame_1
-      frameIndex: 1
-      additiveSortOrder: 0
-      cellRect:
-        x: 0
-        y: 0
-        width: 16
-        height: 16
-      spriteId: 61fe00cffe611fc4692a1e26a1a45881
+      spriteId: 5fb3ccea7a1612c4a842c24a897ca4b1
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -244,4 +215,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 16, y: 16}
-  previousTextureSize: {x: 32, y: 64}
+  previousTextureSize: {x: 32, y: 32}

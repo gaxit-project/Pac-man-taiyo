@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: bigcorner
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 1580005236241910792, guid: a2ab171c15e4c5f4cae8d87d94116250, type: 3}
+  m_Sprite: {fileID: 5075348988385913815, guid: 635f76a7227617a439ab9ba209c8278f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
