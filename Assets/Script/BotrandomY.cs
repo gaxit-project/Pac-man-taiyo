@@ -25,7 +25,7 @@ public class BotrandomY : MonoBehaviour
             Vector3 start = transform.position;
             Vector3 end = new Vector3(start.x, goingUp ? 0.3f : 0f, start.z);
 
-            while (t < 1f && elapsed < 13f)
+            while (t < 1f && elapsed < 28f)
             {
                 transform.position = Vector3.Lerp(start, end, t);
                 t += Time.deltaTime;

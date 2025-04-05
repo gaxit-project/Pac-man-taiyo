@@ -15,6 +15,7 @@ TagManager:
   - LRU
   - LRD
   - Closs
+  - Powercookie
   layers:
   - Default
   - TransparentFX
