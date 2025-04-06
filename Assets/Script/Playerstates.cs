@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Playerstates : MonoBehaviour
 {
@@ -24,6 +26,13 @@ public class Playerstates : MonoBehaviour
             plstates = 1;
             StartCoroutine(playerstates(5f));
         }
+        if (other.CompareTag("enemy"))
+        {
+            if(plstates == 0)
+            {
+                SceneManager.LoadScene("gameover");
+            }
+        }
     }
 
     IEnumerator playerstates(float delay)
@@ -32,5 +41,4 @@ public class Playerstates : MonoBehaviour
         yield return new WaitForSeconds(delay);
         plstates = 0;
     }
-
 }

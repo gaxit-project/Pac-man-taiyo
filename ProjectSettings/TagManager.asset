@@ -16,6 +16,7 @@ TagManager:
   - LRD
   - Closs
   - Powercookie
+  - enemy
   layers:
   - Default
   - TransparentFX
