@@ -17,6 +17,7 @@ TagManager:
   - Closs
   - Powercookie
   - enemy
+  - cookie
   layers:
   - Default
   - TransparentFX
