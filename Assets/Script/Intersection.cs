@@ -18,4 +18,6 @@ public class Intersection : MonoBehaviour
         if (canGoRight) directions.Add(Vector2.right);
         return directions;
     }
+   
+
 }

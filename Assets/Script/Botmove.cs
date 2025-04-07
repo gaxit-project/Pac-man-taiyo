@@ -1,11 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BotMove : MonoBehaviour
 {
     public float speed = 3f;
-    private Vector2 direction = Vector2.left; // 初期の移動方向
+    [HideInInspector] public Vector2 direction = Vector2.left;
     private Transform player;
 
     void Start()
@@ -20,7 +19,9 @@ public class BotMove : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("RD") || other.CompareTag("LD") || other.CompareTag("RU") || other.CompareTag("LU") || other.CompareTag("RUD") || other.CompareTag("LUD") || other.CompareTag("LRU") || other.CompareTag("LRD") || other.CompareTag("Closs"))
+        if (other.CompareTag("RD") || other.CompareTag("LD") || other.CompareTag("RU") ||
+            other.CompareTag("LU") || other.CompareTag("RUD") || other.CompareTag("LUD") ||
+            other.CompareTag("LRU") || other.CompareTag("LRD") || other.CompareTag("Closs"))
         {
             Intersection intersection = other.GetComponent<Intersection>();
             if (intersection != null)
@@ -36,10 +37,9 @@ public class BotMove : MonoBehaviour
         Vector2 botPos = transform.position;
         List<Vector2> possibleDirections = intersection.GetAllowedDirections();
 
-        // 進行方向が許可されていない場合、進行方向を変更
         if (!possibleDirections.Contains(direction))
         {
-            possibleDirections.Remove(-direction); // Uターンを避ける
+            possibleDirections.Remove(-direction); // Uターン回避
 
             if (possibleDirections.Count == 0)
             {
@@ -80,8 +80,26 @@ public class BotMove : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1); // 左向き（通常）
         }
     }
-}
 
+    public void ForceDirectionCheck()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 0.1f);
+        foreach (var hit in hits)
+        {
+            if (hit.CompareTag("RD") || hit.CompareTag("LD") || hit.CompareTag("RU") ||
+                hit.CompareTag("LU") || hit.CompareTag("RUD") || hit.CompareTag("LUD") ||
+                hit.CompareTag("LRU") || hit.CompareTag("LRD") || hit.CompareTag("Closs"))
+            {
+                Intersection intersection = hit.GetComponent<Intersection>();
+                if (intersection != null)
+                {
+                    ChooseDirection(intersection);
+                    AdjustSpriteDirection();
+                }
+            }
+        }
+    }
+}
 
 
 

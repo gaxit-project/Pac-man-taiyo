@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BotrandomY : MonoBehaviour
 {
-    private float rdyY = 0;
+    public float rdyY = 0;
     public float speed = 1.5f;
     private Vector2 direction = Vector2.left; // ‰Šú‚ÌˆÚ“®•ûŒü
 
