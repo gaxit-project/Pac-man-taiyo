@@ -7,7 +7,7 @@ public class TeleportR : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("teleportL"))
+        if (other.CompareTag("teleportR"))
         {
             transform.position = teleportPosition;
         }
