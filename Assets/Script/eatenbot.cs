@@ -4,7 +4,7 @@ using UnityEngine;
 public class eatenbot : MonoBehaviour
 {
     private CircleCollider2D col;
-    private bool isMoving = false;
+    public bool isMoving = false;
 
     void Start()
     {
