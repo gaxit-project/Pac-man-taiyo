@@ -18,6 +18,6 @@ public class start : MonoBehaviour
     }
     public void gamestart()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("OP");
     }
 }

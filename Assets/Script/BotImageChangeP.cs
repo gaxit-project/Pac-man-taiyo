@@ -4,7 +4,7 @@ public class BotImageChangeP : MonoBehaviour
 {
     public Animator animator;  // BotオブジェクトのAnimator
     public Playerstates playerScript;  // PlayerScriptへの参照
-    public eatenbot eatenbot;
+    public BotRandomSpecial BotspP;
 
     // Animatorのパラメーター名
     private static readonly int IsPoweredUp = Animator.StringToHash("IsPoweredUp");
@@ -29,6 +29,14 @@ public class BotImageChangeP : MonoBehaviour
         else
         {
             animator.SetBool(IsPoweredUp, false);  // 通常状態に戻す
+        }
+        if (BotspP.eatenP == true)
+        {
+            animator.SetBool(IsEaten, true);  // パワーアップ状態に変更
+        }
+        else
+        {
+            animator.SetBool(IsEaten, false);  // 通常状態に戻す
         }
     }
 }

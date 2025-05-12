@@ -7,6 +7,7 @@ public class BotRandomSpecial : MonoBehaviour
     private Collider2D col;
     private BotrandomP botMove;
     private Transform player;
+    public bool eatenP = false;
 
     private void Start()
     {
@@ -19,6 +20,7 @@ public class BotRandomSpecial : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            SoundSE.eatghost();
             float state = other.GetComponent<Playerstates>().plstates;
             if (state == 1f)
             {
@@ -29,6 +31,7 @@ public class BotRandomSpecial : MonoBehaviour
 
     private IEnumerator HandleCollision()
     {
+        eatenP = true;
         col.enabled = false;
         botMove.enabled = false;
 
@@ -36,6 +39,7 @@ public class BotRandomSpecial : MonoBehaviour
 
         // 1. 2ïbÇ≈ y=0.3 Ç…à⁄ìÆ
         Vector3 step1 = new Vector3(0f, 0.3f, startPos.z);
+        eatenP = false;
         yield return StartCoroutine(MoveToPosition(step1, 2f));
 
         // 2. 1ïbÇ≈ y=1.05 Ç…à⁄ìÆÅixÇÕÇªÇÃÇ‹Ç‹Åj
@@ -50,6 +54,7 @@ public class BotRandomSpecial : MonoBehaviour
         botMove.rdyP = 1;
         botMove.enabled = true;
         col.enabled = true;
+        
     }
 
     private IEnumerator MoveToPosition(Vector3 target, float duration)

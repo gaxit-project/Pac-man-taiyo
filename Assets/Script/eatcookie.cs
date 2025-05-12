@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class eatcookie : MonoBehaviour
 {
+    public GameObject AudioManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,7 @@ public class eatcookie : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            SoundSE.cookie();
             Destroy(gameObject);
         }
     }

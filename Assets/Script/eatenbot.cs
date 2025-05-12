@@ -5,6 +5,8 @@ public class eatenbot : MonoBehaviour
 {
     private CircleCollider2D col;
     public bool isMoving = false;
+    public bool isReturn = false;
+    public Playerstates playerScript;
 
     void Start()
     {
@@ -26,6 +28,7 @@ public class eatenbot : MonoBehaviour
     IEnumerator MoveAndDisableCollision()
     {
         isMoving = true;
+        isReturn = true;
 
         // “–‚½‚è”»’è‚ð–³Œø‚É‚·‚é
         col.enabled = false;

@@ -1,15 +1,14 @@
 using UnityEngine;
 
-public class BotImageChange : MonoBehaviour
+public class BotImageChangeY : MonoBehaviour
 {
     public Animator animator;  // BotオブジェクトのAnimator
     public Playerstates playerScript;  // PlayerScriptへの参照
-    public eatenbot eatenbot;
+    public BotRandomYSpecial BotspY;
 
     // Animatorのパラメーター名
     private static readonly int IsPoweredUp = Animator.StringToHash("IsPoweredUp");
     private static readonly int IsEaten = Animator.StringToHash("IsEaten");
-    private static readonly int IsReturn = Animator.StringToHash("IsReturn");
 
     void Start()
     {
@@ -31,13 +30,13 @@ public class BotImageChange : MonoBehaviour
         {
             animator.SetBool(IsPoweredUp, false);  // 通常状態に戻す
         }
-        if(eatenbot.isMoving == true)
+        if (BotspY.isResetting == true)
         {
-            animator.SetBool(IsEaten, true);
+            animator.SetBool(IsEaten, true);  // パワーアップ状態に変更
         }
         else
         {
-            animator.SetBool(IsEaten, false);
+            animator.SetBool(IsEaten, false);  // 通常状態に戻す
         }
     }
 }

@@ -19,6 +19,7 @@ public class BotSpecialBehavior : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            SoundSE.eatghost();
             float state = other.GetComponent<Playerstates>().plstates;
             if (state == 1f)
             {

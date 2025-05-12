@@ -6,7 +6,7 @@ public class BotRandomYSpecial : MonoBehaviour
 {
     private Collider2D col;
     private BotrandomY botMove;
-    private bool isResetting = false;
+    public bool isResetting = false;
 
     private void Start()
     {
@@ -18,6 +18,7 @@ public class BotRandomYSpecial : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            SoundSE.eatghost();
             float state = other.GetComponent<Playerstates>().plstates;
             if (state == 1f && !isResetting)  // パワークッキー状態で、リセット中でない場合
             {
